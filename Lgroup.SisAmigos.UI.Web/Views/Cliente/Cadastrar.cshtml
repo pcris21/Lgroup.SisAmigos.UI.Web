@@ -1,0 +1,26 @@
+﻿@*Temos que pegar as informações da tela e levar pro banco. ANtes de chegar no banco temos que levar
+    as informações pra memoria pra dentro de viewModel (model) (classe de armazenamento de dados
+    view -> ViewModel -> Banco
+*@
+@{
+    ViewBag.Title = "...:: Cadastrar ::...";
+}
+@*
+    A sincronizaçao da tela com viewModel e dos campos da tela com os campos do viewMOdel se chama Model Binding (processo de sincronizaçao.
+   Podemos chamar tambem de View Tipada
+*@
+
+
+@* Carregamos nesta pagina o componente de cliente *@
+
+@Html.Partial("_PartialCliente")
+
+@* Cenário classico do asp.net: Importamos as bibliotecas na pagina de layout. Só que na página corrente (aberta) precisamoss dos arquivos das bibliotecas que estão na pag de layout *@
+
+@section MeusScripts
+{
+
+<script src="~/Scripts/Cliente/inicializacao.js"></script>
+
+
+}

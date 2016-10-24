@@ -1,0 +1,97 @@
+﻿
+<!--No MVC temos uma pasta comparttilhada, que é visivel a todo o projeto chamada SHARED
+  É uma psat interna do MVC
+ EXEMPLO: Componentes de menus, componete de login, componetes de mensagem de erro ou de sucesso
+ Pagina mestre - Layout Page   -->
+<!DOCTYPE html>
+
+<html>
+<head>
+    @* Baixamos o bootstrap que é o principal framework de estilização. Deixa o layout bonito e responsivo. É da 
+    empresa Twiter *@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    @* O tema padrão do bootstrap é cinza, para alterar o tema, editar o arquivo theme *@
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+
+    @* Podemos usar arquivos CSS e JS remotamente ou baixando via Nuget
+       Baixar remotamente deve usar maquinas confiaveis, por exemplo, JQuery, Microsoft ou google. Esta técnica é 
+        chamada CDN (Content Delivery Network)
+     *@
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/cupertino/jquery-ui.css"/>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        <!--As divs servem para agrupar os campos-->
+        <div>
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">LGROUP</a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            @*<li class="active"><a href="/Lgroup.SisAmigos.UI.Web/Cliente/Listar">Listar Clientes <span class="sr-only">(current)</span></a></li>*@
+                            <li> @Html.ActionLink("Cadastrar Cliente", "Cadastrar", "Cliente")</li>
+                            <li> @Html.ActionLink("Listar Clientes", "Listar", "Cliente")</li>
+                   
+                        </ul>
+            
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
+            <h1 class="page-header">@ViewBag.Title</h1>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <!--Montamos um esquema de pagina pai e pagina filha. O comando RenderBody é onde é inserida a pagina filha, a
+                pagina que estamos navegando naquele momento-->
+            @RenderBody()
+        </div>
+    </section>
+
+    <footer>
+        <div>
+
+            <nav class="navbar navbar-default navbar-fixed-bottom">
+                <div class="container">
+                    <p> &copy; Todoos direitos Reservados ao <strong>BOZO</strong> </p>
+                </div>
+            </nav>
+         
+        </div>
+    </footer>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @* Por boa prática e performance sempre programar JS no final da pagina. O navegador renderiza a pagiina mais rapida *@
+
+    <script src="~/Scripts/jquery.maskedinput.min.js"></script>
+    @* Importamos a biblioteca de mascara Jquery *@
+
+    @* Jquery unobtrusive é quem vai disparar os data annotations. Possui dependencia com jquery validation *@
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validade.date.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    @* Biblioteca visual do jquery: accordins, datepicker, menus, tabs, etc *@
+    <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+
+    @RenderSection("MeusScripts", false)
+</body>
+</html>

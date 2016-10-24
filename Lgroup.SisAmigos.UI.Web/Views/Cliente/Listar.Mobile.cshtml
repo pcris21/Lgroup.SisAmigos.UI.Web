@@ -1,0 +1,33 @@
+﻿@* recebemos os dados de clientes que vem do controller *@
+@model IEnumerable<ClienteViewModel>
+@{
+    ViewBag.Title = "...:: Listar ::...";
+
+
+}
+@*<div>
+    @TempData["Mensagem"]
+</div>*@
+
+@* Controlamos a visibilidade do componente de sucesso para exibir se tivermos mensagem de sucesso. Se tiver algo na TempData de sucesso que é
+para exibir *@
+
+@if (TempData["Mensagem"] != null)
+{
+    @Html.Partial("_PartialSucesso")
+
+}
+
+<ul class="table-view">
+
+    @foreach (var cliente in Model)
+    {
+        <li class="table-view-cell">
+            <a class="navigate-right">
+                @cliente.Nome
+            </a>
+        </li>
+    }
+   
+</ul>
+

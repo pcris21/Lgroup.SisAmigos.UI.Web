@@ -1,0 +1,66 @@
+﻿@* Permite montar nosso proprios componentes pra reutilizar e em locais diferentes. É como user control. Pode ser usado para menus
+Modais, mensagens de sucesso, componetes de login. Exemplo classico: tela cadastrar e editar *@
+
+@* Classe importada no web.config *@
+@model ClienteViewModel
+
+    <!--O viewbag é um local de armazenamento de dados do asp.net mvc-->
+<!--A diretiva Layout serve para definir uma página mestre, uma pagina de layout. Esta tela terá a mesma aparencia da tela de layout-->
+@* Para desenharmos os campos da tela temos que utilizar o HTML Helper *@
+
+@* Para que os botões de ação funcione devem estar dentro e uma tag de formulario *@
+
+@* Abrimos e fechamos a tag form com using que sempre fecha no final *@
+@using (Html.BeginForm())
+{
+    @* Podemos setar configurações nos campos usanndo new{}. O class é uma palavra reservada e para
+
+        palavras reservadas usamos @ na frente *@
+    <div class="row">
+
+        <div class="col-md-8">
+            
+            <div class="form-group">
+
+                @Html.LabelFor(x => x.Nome)
+                @Html.TextBoxFor(x => x.Nome, new { @class = "form-control", autofocus = "autofocus" })
+                @Html.ValidationMessageFor(x => x.Nome)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.Email)
+                @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Informe um e-mail comercial" })
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.Telefone)
+                @Html.TextBoxFor(x => x.Telefone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Telefone)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.DataNascimento)
+                @Html.TextBoxFor(x => x.DataNascimento, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.DataNascimento)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.ListaSexos)
+
+                @* Passamos 2 parametros para dropdown: 1º onde vamos salvar o código do sexo selecionado. 2º Lista a ser carregada *@
+                @Html.DropDownListFor(x => x.CodigoSexo, Model.ListaSexos, "Selecione", new { @class = "form-control" })
+            </div>
+            <div>
+                @* Nem todos os elementos do html possuem html helper. Por exemplo:
+                Div, Button, Table...
+                O que não tiver criar com html puro
+                *@
+            </div>
+        </div>
+    </div>
+    @* Por boa pratica sempre usar Name e Id. Id é usado para manipular no lado cliente. Name do lado servior *@
+    <input type="reset" id="limpar" name="limpar" value="Limpar" class="btn btn-info" />
+    <input type="submit" id="salvar" name="salvar" value="Salvar" class="btn btn-success" />
+
+}

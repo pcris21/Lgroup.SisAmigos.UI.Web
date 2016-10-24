@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "...::Erro404::...";
+   
+}
+
+<div> <h2>A página que você tentou acessar não existe</h2> </div>
+<div>Data: @DateTime.Now </div>
+@* Quando publicar no servidor mosttra o iP correto. Se o acesso for local mostra o local. Para IPV4 127.0.0.1 Para IPV6 ::1 *@
+<div>IP: @Request.UserHostAddress</div> 
+
+<div>
+    <p>Página Invalida: @Request["AspxErrorPath"]</p>
+</div>
+
+<img src="http://www.otimizacaodesites.com/wp-content/uploads/2013/06/error404.jpg" />
+
+<div> Entre em contato com o suporte</div>

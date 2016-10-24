@@ -1,0 +1,80 @@
+﻿@* recebemos os dados de clientes que vem do controller *@
+@model IEnumerable<ClienteViewModel>
+@{
+    ViewBag.Title = "...:: Listar ::...";
+
+
+}
+@*<div>
+    @TempData["Mensagem"]
+</div>*@
+
+@* Controlamos a visibilidade do componente de sucesso para exibir se tivermos mensagem de sucesso. Se tiver algo na TempData de sucesso que é
+para exibir *@
+
+@if (TempData["Mensagem"] != null)
+{
+    @Html.Partial("_PartialSucesso")
+
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+
+            <th>Excluir</th>
+            <th>Editar</th>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Data de Nascimento</th>
+            <th>Sexo</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    
+        
+        @* Fizemos um lloping para percorrer registro por registro e montar um grid na tela. Um grid mais elaborado Jquery DataTables ou JQGRID *@     
+        
+        @foreach (var clienteCorrente in Model)  //Model (maiusculo para manipular dados)
+        {
+            <tr>
+                <td>
+                    <a href="/Cliente/Excluir/@clienteCorrente.Codigo">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                    
+                </td>
+                <td>
+                    <a  href="/Cliente/Editar/@clienteCorrente.Codigo">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                </td>
+                <td>@clienteCorrente.Codigo</td>
+                <td>@clienteCorrente.Nome</td>
+                <td>@clienteCorrente.Email</td>
+                <td>@clienteCorrente.Telefone</td>
+                <td>@clienteCorrente.DataNascimento.Value.ToShortDateString()</td>
+                @if (clienteCorrente.CodigoSexo == 1)
+                {
+                    <td>Masculino</td>
+                }
+                else
+                {
+                    <td>Feminino</td>
+                }
+                
+            </tr>
+        }
+
+    </tbody>
+    <tr>
+        <td colspan="6">Total: @Model.Count()</td>@*a quantidade de celulas tem que bater sempre. Mesclado para 6 celular para bater a quantidade*@
+    </tr>
+    <tfoot>
+        
+    </tfoot>
+</table>
+

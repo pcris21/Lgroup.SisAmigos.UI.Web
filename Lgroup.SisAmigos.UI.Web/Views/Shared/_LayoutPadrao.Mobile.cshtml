@@ -1,0 +1,45 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+ 
+
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @* Replanejamos a pagina pai mobile *@
+    <link href="~/Content/ratchet.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <header class="bar bar-nav">
+        <h1 class="title">@ViewBag.Title</h1>
+    </header>
+
+    <section class="content">
+        <div >
+           @RenderBody()
+        </div>
+    </section>
+
+    <footer>
+        <div>
+            <nav class="bar bar-tab">
+                <a class="tab-item active" href="/Cliente/Listar">
+                    <span class="icon icon-home"></span>
+                    <span class="tab-label">Listar</span>
+                </a>
+                <a class="tab-item" href="/Cliente/Cadastrar">
+                    <span class="icon icon-person"></span>
+                    <span class="tab-label">Cadastrar</span>
+                </a>
+             
+            </nav>
+         
+        </div>
+    </footer>
+    
+    @RenderSection("MeusScripts", false)
+</body>
+</html>
